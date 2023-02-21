@@ -7,6 +7,7 @@ package com.peoplefluent.interview.java.fruitstand;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Shopping Cart exercise
@@ -20,7 +21,7 @@ public class ShoppingCartMain {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        ShoppingCart cart = new ShoppingCart(System.in, System.out);
+
 
         System.out.println("Enter series of following to checkout items:");
 
@@ -38,10 +39,9 @@ public class ShoppingCartMain {
         System.out.println("All other characters are ignored so, 'Apple Orange, Apple.' is valid.");
         System.out.println();
 
-        cart.loadItems();
-
+        ShoppingCart cart = new ShoppingCart(new Scanner(System.in), System.out);
         System.out.println("Shopping Cart: ");
-        cart.displayCart();
+        cart.displayCart(System.out);
 
         int totalPrice = cart.getTotalPrice();
         System.out.format("Price : %.02f", totalPrice/100.0);

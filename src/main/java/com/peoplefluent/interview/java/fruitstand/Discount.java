@@ -15,6 +15,7 @@ import java.util.Set;
  */
 public class Discount {
     static Discount[] KnownDiscounts = {
+        new Discount(ORANGE.price * 5, APPLE, BANANNA, ORANGE, GRAPEFRUIT),
         new Discount( BANANNA.price, BANANNA, BANANNA),
         new Discount( BANANNA.price, APPLE, BANANNA),
         new Discount( APPLE.price, APPLE, APPLE),

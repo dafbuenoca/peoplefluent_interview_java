@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
  * name. 
  */
 public enum GroceryItem {
+    GRAPEFRUIT("G", 50, "Grapefruit"),
     APPLE("A", 60, "Apple"),
     ORANGE("O", 25, "Orange"),
     BANANNA("B", 20, "Bananna");

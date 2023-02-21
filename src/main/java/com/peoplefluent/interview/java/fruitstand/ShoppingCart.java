@@ -5,34 +5,33 @@
  */
 package com.peoplefluent.interview.java.fruitstand;
 
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
  * Shopping cart API allowing loading/display of items and calculation of prices.
  */
 public class ShoppingCart {
-    private final Scanner inputScanner;
-    private final PrintStream outputStream;
+
     private List<String> items;
 
     /**
      * Constructor
-     * @param inputStream
+     * @param inputScanner
      * @param outputStream
      */
-    public ShoppingCart(InputStream inputStream, PrintStream outputStream) {
-        this.inputScanner = new Scanner(inputStream);
-        this.outputStream = outputStream;
+    public ShoppingCart(Scanner inputScanner, PrintStream outputStream) {
+        loadItems(inputScanner, outputStream);
     }
 
     /**
      * Load items into the shopping cart.
      */
-    public void loadItems() {
+    public void loadItems(Scanner inputScanner, PrintStream outputStream) {
 
         String input = "";
         do {
@@ -41,7 +40,8 @@ public class ShoppingCart {
         } while(!input.contains("."));
 
         // Convert input to list of single length strings that are GroceryItem
-        // matches.
+        // matches.A
+        input = input.replaceAll("[^A-Z]", "");
         items = input.chars()
                 .mapToObj( (int c) -> String.valueOf((char) c))
                 .filter(val -> GroceryItem.matches().contains(val))
@@ -51,7 +51,7 @@ public class ShoppingCart {
     /**
      * Print shopping cart items.
      */
-    public void displayCart() {
+    public void displayCart(PrintStream outputStream) {
         items.forEach((item) -> {
             outputStream.print(" " + GroceryItem.matchOf(item));
         });
